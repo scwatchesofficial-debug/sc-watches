@@ -72,6 +72,23 @@ Quand Stripe vous notifie le paiement, passez la commande en « Payée » dans l
 - Pour ajouter un associé : créez-lui un utilisateur (étape 2), puis dans *SQL Editor* :
   `insert into admins(email) values ('son-email@exemple.fr');`
 
+## Travailler à deux (GitHub)
+
+Le projet est sur GitHub dans un dépôt privé. Chacun a sa copie sur son ordinateur et on se synchronise.
+
+**Votre associé, la première fois :**
+1. Il accepte l'invitation GitHub reçue par e-mail.
+2. Il installe **Git** (git-scm.com) et **Claude Code**.
+3. Dans le dossier où il veut le projet, il tape `cmd` dans la barre d'adresse de l'Explorateur, puis :
+   `git clone ADRESSE_DU_DEPOT`
+4. Il ouvre le dossier créé dans Claude Code.
+
+**Chaque fois que vous travaillez (tous les deux) :**
+- Au début : `git pull` (récupère le travail de l'autre)
+- À la fin : `git add .` puis `git commit -m "ce que j'ai fait"` puis `git push`
+
+Astuce : évitez de modifier le même fichier en même temps. Vous pouvez aussi simplement demander à Claude Code « récupère les changements » ou « envoie mes changements sur GitHub ».
+
 ## Fichiers
 | Fichier | Rôle |
 |---|---|
