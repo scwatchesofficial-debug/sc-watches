@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Suivi de commande — S&amp;C Watches</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="suivi">
+<main>
+  <div class="wrap page-head">
+    <span class="eyebrow plain">Suivi</span>
+    <h1>Où en est votre commande ?</h1>
+    <p class="lead">Saisissez le numéro reçu lors de votre commande et l'adresse e-mail utilisée.</p>
+  </div>
+  <div class="wrap" style="padding-bottom:60px;max-width:820px;margin-left:max(16px, calc((100% - var(--wrap)) / 2))">
+    <form class="track-form" id="trackForm">
+      <label>N° de commande<input id="ref" placeholder="SC-000000" required></label>
+      <label>Adresse e-mail<input id="temail" type="email" required></label>
+      <button class="btn btn-silver" type="submit">Suivre</button>
+    </form>
+    <div id="trackResult"></div>
+  </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/store.js"></script>
+<script src="assets/js/site.js"></script>
+</body>
+</html>

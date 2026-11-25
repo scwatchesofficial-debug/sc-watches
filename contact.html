@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact — S&amp;C Watches</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="contact">
+<main>
+  <div class="wrap page-head">
+    <span class="eyebrow plain">Conciergerie</span>
+    <h1>Parlons de votre prochain<br>garde-temps</h1>
+  </div>
+  <div class="wrap contact" style="padding-bottom:40px">
+    <div class="contact-info">
+      <div class="it"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 15s5-4.6 5-8.5A5 5 0 0 0 3 6.5C3 10.4 8 15 8 15z"/><circle cx="8" cy="6.5" r="1.8"/></svg><div><span class="eyebrow plain">L'atelier</span><p style="margin-top:6px">74940 Annecy-le-Vieux, France</p></div></div>
+      <div class="it"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="1.5" y="3" width="13" height="10" rx="1.5"/><path d="M2 4l6 5 6-5"/></svg><div><span class="eyebrow plain">Écrivez-nous</span><p style="margin-top:6px"><a id="cEmail" href="#"></a></p></div></div>
+      <div class="it"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="1.5" y="1.5" width="13" height="13" rx="3.5"/><circle cx="8" cy="8" r="3"/></svg><div><span class="eyebrow plain">Suivez la maison</span><p style="margin-top:6px"><a href="https://instagram.com/scwatchesofficial" target="_blank" rel="noopener">Instagram <span class="muted">@scwatchesofficial</span></a></p></div></div>
+    </div>
+    <form class="panel form" id="contactForm">
+      <div class="row">
+        <label>Nom complet<input name="name" required placeholder="Votre nom" autocomplete="name"></label>
+        <label>Adresse e-mail<input name="email" type="email" required placeholder="vous@exemple.fr" autocomplete="email"></label>
+      </div>
+      <label>Modèle concerné<select name="subject" id="subject"></select></label>
+      <label>Message<textarea name="message" required placeholder="Parlez-nous de votre projet, d'une pièce qui vous intéresse, ou d'une demande d'essayage…"></textarea></label>
+      <div><button class="btn btn-silver" type="submit">Envoyer le message</button></div>
+      <p id="contactOk" hidden style="color:var(--ok);font-size:14px">Merci, votre message a bien été envoyé. Nous vous répondons très vite.</p>
+    </form>
+  </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/store.js"></script>
+<script src="assets/js/site.js"></script>
+</body>
+</html>

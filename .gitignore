@@ -1,0 +1,11 @@
+# Fichiers système
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Réglages personnels de Claude Code (propres à chaque ordinateur)
+.claude/settings.local.json
+
+# Sauvegardes téléchargées depuis le CRM (contiennent des données clients)
+sauvegarde-*.json
+*.csv

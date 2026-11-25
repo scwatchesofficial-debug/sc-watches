@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Commander — S&amp;C Watches</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="commander">
+<main>
+  <div id="checkoutView">
+    <div class="wrap page-head">
+      <span class="eyebrow plain">Commander</span>
+      <h1>Votre garde-temps, livré chez vous</h1>
+      <p class="lead">Choisissez votre modèle, indiquez vos coordonnées de livraison puis réglez par carte bancaire sur une page de paiement sécurisée.</p>
+    </div>
+    <div class="wrap checkout" style="padding-bottom:40px">
+      <form class="form" id="orderForm" autocomplete="on">
+        <div class="row qty">
+          <label>Modèle<select name="model" id="model" required></select></label>
+          <label>Quantité<input type="number" name="qty" id="qty" min="1" value="1" required></label>
+        </div>
+        <div class="form-sep"><span class="eyebrow plain">Vos coordonnées</span></div>
+        <div class="row">
+          <label>Nom complet<input name="name" required autocomplete="name"></label>
+          <label>Téléphone<input name="phone" type="tel" required autocomplete="tel"></label>
+        </div>
+        <label>Adresse e-mail<input name="email" type="email" required autocomplete="email"></label>
+        <label>Adresse<input name="line1" required placeholder="Numéro et rue" autocomplete="address-line1"></label>
+        <label>Complément d'adresse (facultatif)<input name="line2" autocomplete="address-line2"></label>
+        <div class="row zip">
+          <label>Code postal<input name="zip" required inputmode="numeric" maxlength="5" autocomplete="postal-code"></label>
+          <label>Ville<input name="city" required autocomplete="address-level2"></label>
+        </div>
+        <p class="err" id="orderErr" role="alert"></p>
+        <div><button class="btn btn-silver" id="payBtn" type="submit"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="7" width="10" height="7" rx="1"/><path d="M5 7V5a3 3 0 0 1 6 0v2"/></svg> Payer par carte</button></div>
+      </form>
+      <aside class="panel summary" id="summary"></aside>
+    </div>
+  </div>
+
+  <section id="successView" hidden>
+    <div class="wrap success">
+      <div class="icon"><svg width="26" height="26" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 8.5l3.2 3L13 4.5"/></svg></div>
+      <span class="eyebrow plain">Merci pour votre confiance</span>
+      <div class="ref" id="successRef"></div>
+      <p class="lead" style="margin:0 auto 30px">Votre commande est bien enregistrée. Conservez ce numéro : il vous permet de suivre votre commande à tout moment avec votre adresse e-mail. Nous revenons vers vous très vite.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a class="btn btn-silver" id="successTrack" href="suivi.html">Suivre ma commande</a>
+        <a class="btn" href="collection.html">Retour à la collection</a>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/store.js"></script>
+<script src="assets/js/site.js"></script>
+</body>
+</html>
