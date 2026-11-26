@@ -15,7 +15,7 @@
     <div class="wrap page-head">
       <span class="eyebrow plain">Commander</span>
       <h1>Votre garde-temps, livré chez vous</h1>
-      <p class="lead">Choisissez votre modèle, indiquez vos coordonnées de livraison puis réglez par carte bancaire sur une page de paiement sécurisée.</p>
+      <p class="lead">Deux minutes : choisissez votre modèle, indiquez l'adresse de livraison, puis réglez par carte sur la page sécurisée de Stripe.</p>
     </div>
     <div class="wrap checkout" style="padding-bottom:40px">
       <form class="form" id="orderForm" autocomplete="on">
@@ -35,8 +35,10 @@
           <label>Code postal<input name="zip" required inputmode="numeric" maxlength="5" autocomplete="postal-code"></label>
           <label>Ville<input name="city" required autocomplete="address-level2"></label>
         </div>
+        <label class="consent"><input type="checkbox" name="cgv" required> <span>J'ai lu et j'accepte les <a href="cgv.html" target="_blank">conditions générales de vente</a>, notamment le <a href="cgv.html#retractation" target="_blank">droit de rétractation de 14 jours</a>.</span></label>
         <p class="err" id="orderErr" role="alert"></p>
         <div><button class="btn btn-silver" id="payBtn" type="submit"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="7" width="10" height="7" rx="1"/><path d="M5 7V5a3 3 0 0 1 6 0v2"/></svg> Payer par carte</button></div>
+        <ul class="reassure" data-reassure style="margin-top:0"></ul>
       </form>
       <aside class="panel summary" id="summary"></aside>
     </div>

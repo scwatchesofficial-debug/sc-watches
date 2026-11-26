@@ -37,7 +37,7 @@
         <div><h4>Suivez-nous</h4><ul><li><a href="https://instagram.com/${esc(settings.instagram)}" target="_blank" rel="noopener" style="display:flex;gap:10px;align-items:center">${ICON.insta.replace('<svg', '<svg width="15" height="15"')} Instagram <span class="muted">@${esc(settings.instagram)}</span></a></li><li><a href="mailto:${esc(settings.contactEmail)}">${esc(settings.contactEmail)}</a></li></ul></div>
       </div>
       <div class="giant" aria-hidden="true">S&amp;C WATCHES</div>
-      <div class="legal"><span>© ${new Date().getFullYear()} S&amp;C Watches. Tous droits réservés.</span><span>Fabriqué en France</span></div>
+      <div class="legal"><span>© ${new Date().getFullYear()} S&amp;C Watches. Tous droits réservés.</span><span class="legal-links"><a href="mentions-legales.html">Mentions légales &amp; confidentialité</a><a href="cgv.html">CGV</a><a href="cgv.html#retractation">Rétractation</a></span><span>Fabriqué en France</span></div>
     </div></footer>
     <div class="toast" id="toast" role="status"></div>`);
 
@@ -49,6 +49,34 @@
     $$('.reveal:not(.in)').forEach(el => io ? io.observe(el) : el.classList.add('in'));
   }
 
+  /* ---------- Réassurance (uniquement des faits vérifiables) ---------- */
+  const ship = Number(settings.shipping) || 0;
+  const REASSURE = [
+    ['truck', ship ? `Livraison en France : ${eur(ship)}` : 'Livraison offerte en France'],
+    ['lock', 'Paiement sécurisé par carte (Stripe)'],
+    ['back', "14 jours pour changer d'avis"],
+    ['chat', 'Une question ? Réponse personnelle'],
+  ];
+  const RICON = {
+    truck: '<path d="M1.5 4h8v7h-8zM9.5 6.5h3l2 2.5V11h-5"/><circle cx="4.5" cy="12" r="1.3"/><circle cx="11.5" cy="12" r="1.3"/>',
+    lock: '<rect x="3" y="7" width="10" height="7" rx="1"/><path d="M5 7V5a3 3 0 0 1 6 0v2"/>',
+    back: '<path d="M3 6h7a3.5 3.5 0 0 1 0 7H6"/><path d="M5.5 3.5L3 6l2.5 2.5"/>',
+    chat: '<path d="M2 3.5h12v8H6l-3 2.5v-2.5H2z"/>',
+  };
+  const reassureHTML = () => REASSURE.map(([i, t]) => `<li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2">${RICON[i]}</svg>${esc(t)}</li>`).join('');
+  $$('[data-reassure]').forEach(el => { el.innerHTML = reassureHTML(); });
+  $$('[data-shipping]').forEach(el => { el.textContent = ship ? eur(ship) : 'offerts'; });
+
+  const FAQ = [
+    ['Combien coûte la livraison ?', `${ship ? 'La livraison coûte ' + eur(ship) : 'La livraison est offerte'} en France. Nous livrons pour l'instant en France uniquement.`],
+    ['Le paiement est-il sécurisé ?', 'Oui. Vous réglez par carte bancaire sur la page de paiement de Stripe. Nous ne voyons ni ne conservons jamais vos coordonnées bancaires.'],
+    ['Et si la montre ne me plaît pas ?', "Vous disposez de 14 jours après réception pour changer d'avis. Écrivez-nous et nous vous expliquons comment nous la renvoyer. Tous les détails sont dans nos conditions générales de vente (lien en bas de page)."],
+    ['Comment suivre ma commande ?', 'Après votre commande, vous recevez un numéro (SC-000000). Avec ce numéro et votre e-mail, la page Suivi vous indique à tout moment où en est votre montre.'],
+    ['Pourquoi ces prix ?', "Nous vendons directement depuis notre atelier d'Annecy-le-Vieux, sans boutique ni revendeur entre vous et nous : pas de marge d'intermédiaire à payer."],
+  ];
+  const faq = $('#faq');
+  if (faq) faq.innerHTML = FAQ.map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('');
+
   /* ---------- Carte produit ---------- */
   function card(p) {
     const out = p.stock <= 0;
@@ -56,7 +84,7 @@
       <div class="card-media"><img src="${esc(p.image)}" alt="${esc(p.name)}" loading="lazy"><span class="badge ${out ? 'out' : ''}">${out ? 'Épuisée' : esc(p.badge || 'Disponible')}</span></div>
       <div class="card-title"><h3>${esc(p.name)}</h3><span class="price">${eur(p.price)}</span></div>
       <p>${esc(p.short)}</p>
-      <span class="link">Explorer les caractéristiques ${ICON.arrow.replace('<svg', '<svg width="13" height="13"')}</span>
+      <span class="link">Voir la montre ${ICON.arrow.replace('<svg', '<svg width="13" height="13"')}</span>
     </a>`;
   }
 
@@ -83,7 +111,7 @@
       const root = $('#product');
       if (!p || !p.active) { root.innerHTML = `<div class="success"><h1>Montre introuvable</h1><p class="lead" style="margin:16px auto 30px">Ce modèle n'est plus disponible.</p><a class="btn btn-silver" href="collection.html">Voir la collection</a></div>`; return; }
       document.title = `${p.name} — S&C Watches`;
-      const stock = p.stock <= 0 ? '<span class="stock out">Épuisée — contactez-nous pour être prévenu</span>' : p.stock <= 3 ? `<span class="stock low">Plus que ${p.stock} en stock</span>` : '<span class="stock">En stock</span>';
+      const stock = p.stock <= 0 ? '<span class="stock out">Épuisée — contactez-nous pour être prévenu</span>' : p.stock <= 5 ? `<span class="stock low">Plus que ${p.stock} exemplaire${p.stock > 1 ? 's' : ''} disponible${p.stock > 1 ? 's' : ''}</span>` : '<span class="stock">En stock</span>';
       root.innerHTML = `<div class="product">
         <div class="product-media"><img src="${esc(p.image)}" alt="${esc(p.name)}"></div>
         <div>
@@ -95,9 +123,11 @@
           <p class="desc">${esc(p.description || p.short)}</p>
           <dl class="specs">${Object.entries(p.specs || {}).map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>
           <div style="display:flex;gap:12px;flex-wrap:wrap">
-            ${p.stock > 0 ? `<a class="btn btn-silver" href="commander.html?modele=${encodeURIComponent(p.id)}">Commander ${ICON.arrow}</a>` : ''}
+            ${p.stock > 0 ? `<a class="btn btn-silver" href="commander.html?modele=${encodeURIComponent(p.id)}">Commander · ${eur(p.price)} ${ICON.arrow}</a>` : ''}
             <a class="btn" href="contact.html?modele=${encodeURIComponent(p.id)}">Poser une question</a>
           </div>
+          <ul class="reassure">${reassureHTML()}</ul>`
+          + (p.stock > 0 ? `<div class="buy-bar"><div><b>${esc(p.name)}</b><span>${eur(p.price)}</span></div><a class="btn btn-silver" href="commander.html?modele=${encodeURIComponent(p.id)}">Commander</a></div>` : '') + `
         </div></div>`;
     },
 

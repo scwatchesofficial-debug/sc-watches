@@ -93,6 +93,7 @@ Astuce : évitez de modifier le même fichier en même temps. Vous pouvez aussi 
 | Fichier | Rôle |
 |---|---|
 | `index.html`, `collection.html`, `montre.html`, `histoire.html`, `commander.html`, `suivi.html`, `contact.html` | Pages du site |
+| `mentions-legales.html`, `cgv.html` | Pages légales obligatoires — remplir tout ce qui est surligné en jaune `[ … ]` avant de vendre |
 | `admin/` | CRM |
 | `assets/js/config.js` | **Les 2 clés Supabase à renseigner** |
 | `assets/js/store.js` | Lecture/écriture des données (en ligne ou local) |
